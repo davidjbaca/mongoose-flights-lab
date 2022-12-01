@@ -43,7 +43,7 @@ function newFlight(req, res){
 }
 
 function show(req, res, next) {
-    Flight.findById(req.params.id, (err, flight) => {
+    Flight.findById(req.params.id).then((flight) => {
         console.log(flight);
 
         res.render('flights/show', {flight});
