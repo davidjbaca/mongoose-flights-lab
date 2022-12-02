@@ -7,13 +7,23 @@ module.exports = {
 	show
 }
 
+function show(req, res) {
+
+	Flight.findById(req.params.id, function(err, flightDoc) {
+		console.log(flightDoc)
+		
+	  res.render('flights/show', { title: 'Flight Detail', flight: flightDoc});
+	});
+  }
+
+
 function index(req, res){
 
 	Flight.find({}, function(err, flightDocs){
 		
 		console.log(flightDocs)
 
-		res.render('flights/index', {flights: flightDocs, name: 'Sophia Airlines'})
+		res.render('flights/index', {flights: flightDocs, name: ''})
 	})
 
 }
@@ -26,26 +36,21 @@ function create(req,res){
 		if(err){
 			console.log(err);
 			return res.send('err creating check the terminal')
-		}
+		} else{
 	
 		console.log(flightDoc);
 		
 
 		// respond to the client
 		res.redirect('/')
-	}); // end of the callback function in Movie.create
+		}
+	}); 
 
     
 }
 
-function newFlight(req, res){
-	res.render('flights/new')
-}
 
-function show(req, res, next) {
-    Flight.findById(req.params.id).then((flight) => {
-        console.log(flight);
-
-        res.render('flights/show', {flight});
-    })
-}
+function newFlight(req, res) {
+    const newFlight = new Flight();
+    res.render('flights/new', {defaultDeparture: newFlight.departs});
+};
