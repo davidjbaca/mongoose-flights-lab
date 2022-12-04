@@ -25,6 +25,19 @@
         <div>Date: </div>
     
         <div><%= flight.departs %></div>
+
+        <br>
+        <br>
+
+        <div><strong>Tickets & Pricing</strong></div>
+        <ul>
+          <% tickets.forEach(ticket => { %>
+          <li>SEAT: <%= ticket.seat %> Price: <%= ticket.price %>  </li> 
+          <% }) %> 
+        </ul>
+        <a href="/flights/<%=flight._id%>/tickets/new"><button>Add Ticket</button></a>
+
+
     </section>
 
     <br />
@@ -41,6 +54,10 @@
       <option value="LAX">LAX</option>
       <option value="SAN">SAN</option>
     </select>
+
+
+
+
 
 
     <label>Arrival:</label>
