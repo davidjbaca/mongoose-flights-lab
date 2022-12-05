@@ -21,9 +21,8 @@ function create(req, res) {
 }
 
 function newTicket(req, res) {
-    Ticket.find({}, function (err, tickets) {
-      res.render('tickets/new', {flight: req.parms.id});
-    })
+    
+      res.render('tickets/new', {flight: req.params.id});
 }
 
 
